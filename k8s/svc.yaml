@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: List
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: prom-metric-demo
+    namespace: prophet
+    labels:
+      enable-on-api-gw: "true"
+  spec:
+    ports:
+    - name: patrol-port
+      port: 80
+      protocol: TCP
+      targetPort: 51088
+    selector:
+      app: prom-metric-demo
+    sessionAffinity: None
+    type: NodePort
